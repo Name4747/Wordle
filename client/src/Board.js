@@ -6,20 +6,51 @@ function Cell({letter,color}) {
     </td>
 }
 
-function Row({guess}) {
+function Row({guess, letters}) {
+
     return <tr>
         {guess.split('')
-            .map(l => <Cell letter={l} color={"blue"}/>)
+            .map(l => 
+                <Cell 
+                    letter={l} 
+                    color={
+                        letters.find(letterData => letterData.letter == l)
+                        .color
+                    }
+                />)
         }
     </tr>
 }
 
-const Board = () => {
+const Board = ({letters, setLetters}) => {
     const [answer,setAnswer] = useState("REACT")
     const [guesses,setGuesses] = useState(["ROBOT"])
+    
+    const processGuess = (guess) => {
+        setGuesses([...guesses,guess])
+        guess.split('')
+            .forEach((l,i) => {
+                let color;
+                if (answer.indexOf(l) == i) {
+                    color = "green"
+                }
+                else if (answer.includes(l)) {
+                    color = "yellow"
+                }
+                else {
+                    color = "black"
+                }
+                const index = letters.findIndex(letterData => letterData.letter == l)
+                letters[index].color = color
+            })
+        setLetters([...letters])
+    }
+    
     return (
         <div>
-            <Row guess={guesses[0]}/>
+            {guesses.map(guess => <Row guess={guess} letters={letters}/>)}
+            
+            <button onClick={() => {processGuess("READS")}}>test</button>
         </div>
     )
 }
