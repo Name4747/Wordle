@@ -2,7 +2,7 @@ import React from 'react'
 
 const Key = ({letter,color}) => {
     return (
-        <div style={{backgroundColor: color}}>
+        <div className="key" style={{backgroundColor: color}}>
             {letter}
         </div>
     )
