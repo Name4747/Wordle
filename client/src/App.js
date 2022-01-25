@@ -13,13 +13,27 @@ function App() {
     }))
   const [letters,setLetters] = useState(alphaArr)
   const [newLetter,setNewLetter] = useState('')
+  const [newGuess,setNewGuess] = useState('')
   return (
     <div>
       <header>
         <h1 id="title">WORDLE</h1>
       </header>
-      <Board letters={letters} setLetters={setLetters} newLetter={newLetter}/>
-      <Keyboard letters={letters} setNewLetter={setNewLetter}/>
+
+      <Board 
+        letters={letters} 
+        setLetters={setLetters} 
+        newLetter={newLetter}
+        newGuess={newGuess}
+      />
+
+      <Keyboard 
+        letters={letters} 
+        setNewLetter={setNewLetter} 
+        setNewGuess={setNewGuess}
+        guess={newGuess}
+      />
+
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Key = ({letter,color, setNewLetter}) => {
+const Key = ({letter,color,setNewLetter,setNewGuess,guess}) => {
     const onKeyPress = (e) => {
         setNewLetter(letter)
+        setNewGuess(guess + letter)
     }
     return (
         <div 

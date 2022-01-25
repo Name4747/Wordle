@@ -2,8 +2,8 @@ import React,{useState} from 'react'
 
 function Cell({letter,color}) {
     return <td style={{backgroundColor: color}}>
-        {letter}
-    </td>
+            {letter}
+        </td>
 }
 
 function Row({guess, letters}) {
@@ -19,6 +19,12 @@ function Row({guess, letters}) {
                     }
                 />)
         }
+    </tr>
+}
+
+function NewRow({newGuess}) {
+    return <tr>
+        
     </tr>
 }
 
@@ -38,7 +44,7 @@ const Board = ({letters, setLetters, newLetter}) => {
                     color = "yellow"
                 }
                 else {
-                    color = "black"
+                    color = "rgb(29, 29, 31)"
                 }
                 const index = letters.findIndex(letterData => letterData.letter == l)
                 letters[index].color = color
@@ -48,8 +54,8 @@ const Board = ({letters, setLetters, newLetter}) => {
     
     return (
         <div>
-            {guesses.map(guess => <Row guess={guess} letters={letters}/>)}
-            
+            {guesses.map(guess => <Row guess={guess} letters={letters} />)}
+            <NewRow newGuess={newGuess} />
             <button onClick={() => {processGuess("READS")}}>test</button>
             <h1>{newLetter}</h1>
         </div>
