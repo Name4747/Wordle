@@ -35,3 +35,7 @@ td {
   height: 40px;
   width: 40px;
 }
+
+div#keyboard {
+  width: 550px;
+}

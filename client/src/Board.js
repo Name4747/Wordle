@@ -62,7 +62,7 @@ const Board = ({letters, setLetters, newLetter, newGuess, setNewGuess}) => {
             .forEach((l,i) => {
                 let color;
                 if (answer.indexOf(l) == i) {
-                    color = "green"
+                    color = "rgb(83,141,78)"
                 }
                 else if (answer.includes(l)) {
                     color = "rgb(181,159,59)"
