@@ -2,8 +2,8 @@ import React,{useState} from 'react'
 
 function Cell({letter,color}) {
     return <td style={{backgroundColor: color}}>
-        {letter}
-    </td>
+            {letter}
+        </td>
 }
 
 function Row({guess, letters}) {
@@ -22,23 +22,53 @@ function Row({guess, letters}) {
     </tr>
 }
 
-const Board = ({letters, setLetters}) => {
+function NewRow({newGuess}) {
+    const getBlankCells = (num) => {
+        const blankCells = []
+        for (let i = 0; i < num; i++) {
+            blankCells.push(<Cell
+                letter=" "
+                color="rgb(18,18,19)"
+            />)
+        }
+        return blankCells
+    }
+    return <tr>
+        {newGuess.split('')
+            .map(l => 
+                <Cell 
+                    letter={l} 
+                    color="rgb(18,18,19)"
+                />)
+        }
+        {getBlankCells(5 - newGuess.length)}
+    </tr>
+}
+
+const Board = ({letters, setLetters, newLetter, newGuess, setNewGuess}) => {
     const [answer,setAnswer] = useState("REACT")
-    const [guesses,setGuesses] = useState(["ROBOT"])
-    
+    const [guesses,setGuesses] = useState([""])
+    const handleEnter = () => {
+        if (newGuess.length == 5) {
+            processGuess(newGuess)
+            setNewGuess('')
+        }
+        
+    }
+
     const processGuess = (guess) => {
         setGuesses([...guesses,guess])
         guess.split('')
             .forEach((l,i) => {
                 let color;
                 if (answer.indexOf(l) == i) {
-                    color = "green"
+                    color = "rgb(83,141,78)"
                 }
                 else if (answer.includes(l)) {
-                    color = "yellow"
+                    color = "rgb(181,159,59)"
                 }
                 else {
-                    color = "black"
+                    color = "rgb(29, 29, 31)"
                 }
                 const index = letters.findIndex(letterData => letterData.letter == l)
                 letters[index].color = color
@@ -48,9 +78,13 @@ const Board = ({letters, setLetters}) => {
     
     return (
         <div>
-            {guesses.map(guess => <Row guess={guess} letters={letters}/>)}
+            {guesses.map(guess => <Row guess={guess} letters={letters} />)}
+            <NewRow newGuess={newGuess} />
+            <button 
+                onClick={handleEnter}
+                disabled={newGuess.length != 5}
+            >Enter</button>
             
-            <button onClick={() => {processGuess("READS")}}>test</button>
         </div>
     )
 }

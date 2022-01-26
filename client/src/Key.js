@@ -1,8 +1,18 @@
 import React from 'react'
 
-const Key = ({letter,color}) => {
+const Key = ({letter,color,setNewLetter,setNewGuess,guess}) => {
+    const onKeyPress = (e) => {
+        setNewLetter(letter)
+        if (guess.length < 5) {
+            setNewGuess(guess + letter)
+        }
+    }
     return (
-        <div className="key" style={{backgroundColor: color}}>
+        <div 
+            className="key" 
+            onClick={onKeyPress}
+            style={{backgroundColor: color}}
+        >
             {letter}
         </div>
     )
