@@ -4,7 +4,7 @@ import Board from './Board'
 import Keyboard from './Keyboard'
 
 function App() {
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  const alphabet = "QWERTYUIOPASDFGHJKLZXCVBNM"
   const alphaArr = alphabet
     .split('')
     .map(l => ({
@@ -25,6 +25,7 @@ function App() {
         setLetters={setLetters} 
         newLetter={newLetter}
         newGuess={newGuess}
+        setNewGuess={setNewGuess}
       />
 
       <Keyboard 
