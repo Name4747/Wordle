@@ -28,7 +28,7 @@ function NewRow({newGuess}) {
         for (let i = 0; i < num; i++) {
             blankCells.push(<Cell
                 letter=" "
-                color="black"
+                color="rgb(18,18,19)"
             />)
         }
         return blankCells
@@ -38,7 +38,7 @@ function NewRow({newGuess}) {
             .map(l => 
                 <Cell 
                     letter={l} 
-                    color="black"
+                    color="rgb(18,18,19)"
                 />)
         }
         {getBlankCells(5 - newGuess.length)}
@@ -49,8 +49,11 @@ const Board = ({letters, setLetters, newLetter, newGuess, setNewGuess}) => {
     const [answer,setAnswer] = useState("REACT")
     const [guesses,setGuesses] = useState([""])
     const handleEnter = () => {
-        processGuess(newGuess)
-        setNewGuess('')
+        if (newGuess.length == 5) {
+            processGuess(newGuess)
+            setNewGuess('')
+        }
+        
     }
 
     const processGuess = (guess) => {
@@ -77,7 +80,10 @@ const Board = ({letters, setLetters, newLetter, newGuess, setNewGuess}) => {
         <div>
             {guesses.map(guess => <Row guess={guess} letters={letters} />)}
             <NewRow newGuess={newGuess} />
-            <button onClick={handleEnter}>Enter</button>
+            <button 
+                onClick={handleEnter}
+                disabled={newGuess.length != 5}
+            >Enter</button>
             
         </div>
     )
