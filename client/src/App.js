@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './App.css';
 import Board from './Board'
 import Keyboard from './Keyboard'
+import StatBox from './StatBox'
 
 function App() {
   const alphabet = "QWERTYUIOPASDFGHJKLZXCVBNM"
@@ -14,11 +15,15 @@ function App() {
   const [letters,setLetters] = useState(alphaArr)
   const [newLetter,setNewLetter] = useState('')
   const [newGuess,setNewGuess] = useState('')
+
+  //username, best score, game beaten, games played
   return (
     <div>
       <header>
-        <h1 id="title">WORDLE</h1>
+        <h1 id="title">WERDLE</h1>
       </header>
+
+      <StatBox />
 
       <Board 
         letters={letters} 
