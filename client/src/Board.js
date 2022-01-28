@@ -1,14 +1,14 @@
 import React,{useState} from 'react'
 
 function Cell({letter,color}) {
-    return <td style={{backgroundColor: color}}>
+    return <div className="Cell" style={{backgroundColor: color}}>
             {letter}
-        </td>
+        </div>
 }
 
 function Row({guess, letters}) {
 
-    return <tr>
+    return <div>
         {guess.split('')
             .map(l => 
                 <Cell 
@@ -19,7 +19,7 @@ function Row({guess, letters}) {
                     }
                 />)
         }
-    </tr>
+    </div>
 }
 
 function NewRow({newGuess}) {

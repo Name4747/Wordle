@@ -18,12 +18,12 @@ function App() {
 
   //username, best score, game beaten, games played
   return (
-    <div>
+    <div className="App">
       <header>
         <h1 id="title">WERDLE</h1>
       </header>
 
-      <StatBox />
+      
 
       <Board 
         letters={letters} 
@@ -39,7 +39,6 @@ function App() {
         setNewGuess={setNewGuess}
         guess={newGuess}
       />
-
     </div>
   );
 }

@@ -3,7 +3,7 @@ import Key from './Key'
 
 const Keyboard = ({letters,setNewLetter,setNewGuess,guess}) => {
     return (
-        <div id="keyboard">
+        <div className="Keyboard">
             {letters.map(l => 
                 <Key 
                     letter={l.letter} 

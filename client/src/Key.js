@@ -9,7 +9,7 @@ const Key = ({letter,color,setNewLetter,setNewGuess,guess}) => {
     }
     return (
         <div 
-            className="key" 
+            className="Key" 
             onClick={onKeyPress}
             style={{backgroundColor: color}}
         >
