@@ -12,7 +12,8 @@ function App() {
       letter: l,
       color: "rgb(129,131,132)"
     }))
-  const [letters,setLetters] = useState(alphaArr)
+  const loadLetters = JSON.parse(localStorage.getItems("letters")) || alphaArr
+  const [letters,setLetters] = useState(loadLetters) // error
   const [newLetter,setNewLetter] = useState('')
   const [newGuess,setNewGuess] = useState('')
 

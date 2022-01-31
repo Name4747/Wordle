@@ -47,11 +47,13 @@ function NewRow({newGuess}) {
 
 const Board = ({letters, setLetters, newLetter, newGuess, setNewGuess}) => {
     const [answer,setAnswer] = useState("REACT")
-    const [guesses,setGuesses] = useState([""])
+    const loadGuesses = JSON.parse(localStorage.getItem("guesses")) || []
+    const [guesses,setGuesses] = useState(loadGuesses)
     const handleEnter = () => {
         if (newGuess.length == 5) {
             processGuess(newGuess)
             setNewGuess('')
+            localStorage.setItem("guesses",JSON.stringify([...guesses,newGuess]))
         }
         
     }
@@ -74,6 +76,7 @@ const Board = ({letters, setLetters, newLetter, newGuess, setNewGuess}) => {
                 letters[index].color = color
             })
         setLetters([...letters])
+        localStorage.setItem[index].color = color
     }
     
     return (
